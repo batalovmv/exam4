@@ -77,25 +77,36 @@ document.addEventListener("DOMContentLoaded", function (event) {
       let newDiv = document.createElement('div')
       document.querySelector(".todo-inner").appendChild(document.querySelector(".task-box").cloneNode(true));
 
-      document.querySelector(".box-text").innerHTML = localStorage.getItem(key)
+      document.querySelector(".box-text").innerHTML = key
       document.querySelector("#next").innerHTML = taskStatus
       document.querySelector(".task-box").style.display = "block";
-
 
     }
 
   }
- 
 
-  
+
+
 
 
 });
 function btnInput() {
   let taskStatus = inProgress.innerHTML
   let userInputTask = document.getElementById('inputTask').value
-  localStorage.setItem(userInputTask,taskStatus)
+  localStorage.setItem(userInputTask, taskStatus)
 }
+
+function btnDelete() {
+  div = Array.from(document.querySelectorAll('.task-box'));
+  div.forEach((e) => {
+    e.onclick = function () {
+      this.remove();
+    }
+  });
+
+}
+
+
 
 
 
