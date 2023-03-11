@@ -70,43 +70,55 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 
   // })
-  let keys = Object.keys(localStorage);
-  for (let key of keys) {
-    let taskStatus = document.getElementById('inProgress').textContent
-    if (localStorage.getItem(key) === taskStatus) {
-      let newDiv = document.createElement('div')
-      document.querySelector(".todo-inner").appendChild(document.querySelector(".task-box").cloneNode(true));
+  const refresh = function () {
+    let keys = Object.keys(localStorage);
+    for (let key of keys) {
+      let taskStatus = document.getElementById('inProgress').textContent
+      if (localStorage.getItem(key) === taskStatus) {
+        let newDiv = document.createElement('div')
+        document.querySelector(".todo-inner").appendChild(document.querySelector(".task-box").cloneNode(true));
 
-      document.querySelector(".box-text").innerHTML = key
-      document.querySelector("#next").innerHTML = taskStatus
-      document.querySelector(".task-box").style.display = "block";
+        document.querySelector(".box-text").innerHTML = key
+        document.querySelector("#next").innerHTML = taskStatus
+        document.querySelector(".task-box").style.display = "block";
+
+      }
 
     }
-
   }
 
 
 
 
-
+  refresh()
 });
+
 function btnInput() {
   let taskStatus = inProgress.innerHTML
   let userInputTask = document.getElementById('inputTask').value
   localStorage.setItem(userInputTask, taskStatus)
+  location.reload()
 }
 
 function btnDelete() {
-  div = Array.from(document.querySelectorAll('.task-box'));
+  div = document.querySelectorAll('.task-box');
   div.forEach((e) => {
     e.onclick = function () {
       let delKey = this.querySelector('.box-text').innerHTML
       localStorage.removeItem(delKey)
       this.remove();
-
     }
   });
-
+}
+function btnNext(params) {
+  div = document.querySelectorAll('.task-box');
+  div.forEach((e) => {
+    e.onclick = function () {
+      let delKey = this.querySelector('.box-text').innerHTML
+      localStorage.removeItem(delKey)
+      this.remove();
+    }
+  });
 }
 
 
