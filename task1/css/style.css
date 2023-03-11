@@ -59,7 +59,7 @@ dd {
 
 .inner-box {
   width: 200px;
-  
+  min-height: 500px;
   border: 1px solid black;
   border-radius: 5px;
   margin-right: 10px;
@@ -75,6 +75,11 @@ dd {
   height: 150px;
   display: none;
   position: relative;
+  background-color: rgba(169, 164, 173, 0.4);
+  border-radius: 5px;
+  margin-left: 5%;
+  margin-bottom: 5%;
+  margin-top: 5%;
 }
 
 .box-title {
@@ -88,6 +93,7 @@ dd {
   max-width: 70%;
   overflow: auto;
   max-height: 90px;
+
 }
 
 #next {
@@ -118,7 +124,23 @@ dd {
   outline: none;
   box-shadow: 0 0 0 4px #cbd6ee;
 }
-#delete{
-  height: 30px;
-  width: 30px;
+
+
+
+#delete {
+  margin-left: 15px;
+  color: grey;
+  font-weight: bold;
+  float: right;
+  font-size: 25px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  border: none;
+  margin-top: 5px;
+  background-color: transparent;
+}
+
+#delete:hover {
+  color: black;
 }
