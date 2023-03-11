@@ -1,83 +1,18 @@
 
+let secondColumn 
+let thirdColumn
 document.addEventListener("DOMContentLoaded", function (event) {
-  const showModal = function () {
-    const modal = document.querySelector('[class="modal"]');
-    const modalTitle = document.createElement('h2')
-    modalTitle.innerText = titleText
-    const modalText = document.createElement('div')
-    modalText.innerHTML = modalBody
-    modal.insertBefore(modalTitle, okay);
-    modal.insertBefore(modalText, okay);
-    document.getElementById('okay').style = 'display : block'
-    modal.style = 'position : fixed';
-    document.querySelector('[class="overlay"]').style = 'position : fixed';
-    document.querySelector('[class="overlay"]').style = 'opacity :0.5';
-    function btnHandler(callback) {
-      console.log('calback');
-      return callback();
-    }
-
-    btnHandler = () => {
-      modal.style = 'opacity : 1';
-
-      document.querySelector('[class="overlay"]').style = 'opacity :0';
-
-      document.getElementById('okay').style = 'display : none'
-      modalText.remove()
-      modalTitle.remove()
-      function cb(print) {
-        console.log(print);
-      }
-      function message(callback) {
-        const print = 'callback'
-        callback(print);
-      }
-      message(cb)
-    }
-
-    const btn = document.getElementById('okay')
-    btn.addEventListener('click', btnHandler)
-    const overlayExit = document.querySelector('[class="overlay"]')
-    overlayExit.addEventListener('click', btnHandler)
-
-  }
-
-
-  ////
-  // document.querySelector('#add').addEventListener('click', function () {
 
 
 
-  //   const inputName = document.querySelector('#inputTask').value
-  //   function btnSave() {
 
-  //     text = localStorage.getItem(localStorage.key(userData))
-
-  //     alert("Вы сохранили ваш текст");
-  //     textArea = document.getElementById('text').value
-
-  //     localStorage.setItem(userData, textArea)
-  //     localStorage.getItem(userData)
-  //   }
-  //   function btnClear() {
-  //     alert("Вы удалили данные");
-  //     document.getElementById('text').value = ''
-  //     localStorage.removeItem(userData)
-  //     btnExit()
-
-
-  //   }
-
-
-  // })
-
-  const refresh = function () {
+  
     let keys = Object.keys(localStorage);
     for (let key of keys) {
-      let secondColumn = document.getElementById('inProgress').textContent
-      let thirdColumn = document.getElementsByClassName('done-title')[0].textContent
+       secondColumn = document.getElementById('inProgress').innerHTML
+       thirdColumn = document.getElementsByClassName('done-title')[0].innerHTML
       if (localStorage.getItem(key) === secondColumn) {
-
+console.log('случай 1 '+key);
         document.querySelector(".todo-inner").appendChild(document.querySelector(".task-box").cloneNode(true));
 
         document.querySelector(".box-text").innerHTML = key
@@ -85,11 +20,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.querySelector(".task-box").style.display = "block";
 
       } else if (localStorage.getItem(key) === thirdColumn) {
+        console.log('случай 2 '+key);
         document.querySelector(".progress-inner").appendChild(document.querySelector(".task-box").cloneNode(true));
         document.querySelector(".box-text").innerHTML = key
         document.querySelector("#next").innerHTML = thirdColumn
         document.querySelector(".task-box").style.display = "block";
       } else if (localStorage.getItem(key) === deleteTitle) {
+        console.log('случай 3');
         document.querySelector(".done-inner").appendChild(document.querySelector(".task-box").cloneNode(true));
         document.querySelector(".box-text").innerHTML = key
         document.querySelector("#next").innerHTML = deleteTitle
@@ -97,12 +34,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
       }
 
     }
-  }
+  
+  console.log(document.getElementById('progress-title'));
+  console.log(document.querySelector([id = "progress-title"]));
 
 
-
-
-  refresh()
+  
 });
 let deleteTitle = 'Delete'
 function btnInput() {
@@ -120,22 +57,26 @@ function btnDelete() {
       localStorage.removeItem(delKey)
       this.remove();
     }
+
   });
 }
+
 function btnNext() {
-  div = document.querySelectorAll('.task-box');
+  let div = document.querySelectorAll('.task-box');
+  let i = 0
   div.forEach((e) => {
     e.onclick = function () {
       let delKey = this.querySelector('.box-text').innerHTML
       console.log(delKey);
-      console.log(localStorage.getItem(delKey)); document
+      console.log(localStorage.getItem(delKey));
 
       if (localStorage.getItem(delKey) === document.getElementsByClassName('progress-title')[0].textContent) {
         console.log('бинго');
         let nextColumn = document.getElementsByClassName('done-title')[0].textContent
         console.log(nextColumn);
         localStorage.setItem(delKey, nextColumn)
-      } else if (localStorage.getItem(delKey) === document.getElementsByClassName('done-title')[0].textContent) {
+
+      } else if (localStorage.getItem(delKey) === document.getElementsByClassName('done-title')[i].textContent) {
         console.log('бинго2');
 
         localStorage.setItem(delKey, deleteTitle)
@@ -144,13 +85,15 @@ function btnNext() {
         let delKey = this.querySelector('.box-text').innerHTML
         localStorage.removeItem(delKey)
         this.remove()
-        
+
 
       }
 
+
     }
+    location.reload()
   });
-  location.reload()
+
 }
 
 

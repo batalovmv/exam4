@@ -59,20 +59,20 @@ dd {
 
 .inner-box {
   width: 200px;
-  min-height: 500px;
+  
   border: 1px solid black;
   border-radius: 5px;
-
-}
-
-.inner-box:not(:last-child) {
   margin-right: 10px;
 }
 
+/* .inner-box:not(:last-child) {
+  margin-right: 10px;
+} */
+
 .task-box {
   border: 1px solid black;
-  width: 100px;
-  height: 100px;
+  width: 90%;
+  height: 150px;
   display: none;
   position: relative;
 }
@@ -81,16 +81,44 @@ dd {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  
+
 }
 
 .box-text {
   max-width: 70%;
-  overflow: hidden;
+  overflow: auto;
+  max-height: 90px;
 }
 
 #next {
   position: absolute;
   bottom: 5px;
   left: 5px;
+}
+
+#next {
+  min-width: 100px;
+  font-family: inherit;
+  appearance: none;
+  border: 0;
+  border-radius: 5px;
+  background: #4676d7;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+#next:hover {
+  background: #1d49aa;
+}
+
+#next:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px #cbd6ee;
+}
+#delete{
+  height: 30px;
+  width: 30px;
 }
