@@ -3,34 +3,40 @@ let secondColumn
 let thirdColumn
 document.addEventListener("DOMContentLoaded", function () {
   let keys = Object.keys(localStorage);
-  alert(Object.keys(localStorage))
+  todoInner = document.getElementsByClassName('todo-inner')[0]
+  progressInner = document.getElementsByClassName('progress-inner')[0]
+  doneInner = document.getElementsByClassName('done-inner')[0]
+
   for (let key of keys) {
     secondColumn = document.getElementById('inProgress').innerHTML
     thirdColumn = document.getElementsByClassName('done-title')[0].innerHTML
     if (localStorage.getItem(key) === secondColumn) {
-      document.querySelector(".todo-inner").append(document.querySelector(".task-box").cloneNode(true));
+      document.querySelector(".todo-inner").append(document.querySelector(".main-box").cloneNode(true));
+      document.getElementsByClassName('main-box')[0].classList.remove('.main-box')
       document.querySelector(".box-text").innerHTML = key
       document.querySelector("#next").innerHTML = secondColumn
       document.querySelector(".task-box").style.display = "block";
       document.querySelector(".task-box").classList.add('1') //введено для проверки, было выявлено что обьекту может одновременно присвоиться два класса, из-за этого просиходит некорректное перемещение
-      alert('случай 1')
+
     } else if (localStorage.getItem(key) === thirdColumn) {
-      document.querySelector(".progress-inner").append(document.querySelector(".task-box").cloneNode(true));
+
+      document.querySelector(".progress-inner").append(document.querySelector(".main-box").cloneNode(true));
+      document.getElementsByClassName('main-box')[0].classList.remove('.main-box')
       document.querySelector(".box-text").innerHTML = key
       document.querySelector("#next").innerHTML = thirdColumn
       document.querySelector(".task-box").style.display = "block";
       document.querySelector(".task-box").classList.add('2') //введено для проверки
-      alert('случай 2')
+
     } else if (localStorage.getItem(key) === deleteTitle) {
-      alert('случай 3');
-      document.querySelector(".done-inner").append(document.querySelector(".task-box").cloneNode(true));
+
+      document.querySelector(".done-inner").append(document.querySelector(".main-box").cloneNode(true));
       document.querySelector(".box-text").innerHTML = key
       document.querySelector("#next").innerHTML = deleteTitle
       document.querySelector(".task-box").style.display = "block";
       document.querySelector(".task-box").classList.add('3') //введено для проверки
     } else {
-      alert('случай 4');
-      document.querySelector(".done-inner").append(document.querySelector(".task-box").cloneNode(true));
+
+      document.querySelector(".done-inner").append(document.querySelector("main-box").cloneNode(true));
       document.querySelector(".box-text").innerHTML = key
       document.querySelector("#next").innerHTML = deleteTitle
       document.querySelector(".task-box").style.display = "block";
@@ -72,12 +78,7 @@ function btnNext() {
     e.onclick = function () {
       let delKey = this.querySelector('.box-text').innerHTML
       if (this.querySelector('#next').innerHTML === document.getElementsByClassName('progress-title')[0].textContent) {
-        console.log('бинго');
         let nextColumn = document.getElementsByClassName('done-title')[0].textContent
-        alert(document.getElementsByClassName('done-title')[0].textContent)
-        alert(this.querySelector('#next').innerHTML)
-        console.log(nextColumn);
-
         localStorage.setItem(delKey, nextColumn)
       } else if (localStorage.getItem(delKey) === document.getElementsByClassName('done-title')[0].textContent) {
 
