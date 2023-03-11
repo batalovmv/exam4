@@ -3,6 +3,7 @@ let secondColumn
 let thirdColumn
 document.addEventListener("DOMContentLoaded", function () {
   let keys = Object.keys(localStorage);
+  alert(Object.keys(localStorage))
   for (let key of keys) {
     secondColumn = document.getElementById('inProgress').innerHTML
     thirdColumn = document.getElementsByClassName('done-title')[0].innerHTML
@@ -11,12 +12,14 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelector(".box-text").innerHTML = key
       document.querySelector("#next").innerHTML = secondColumn
       document.querySelector(".task-box").style.display = "block";
+      document.querySelector(".task-box").classList.add('1') //введено для проверки, было выявлено что обьекту может одновременно присвоиться два класса, из-за этого просиходит некорректное перемещение
       alert('случай 1')
     } else if (localStorage.getItem(key) === thirdColumn) {
       document.querySelector(".progress-inner").append(document.querySelector(".task-box").cloneNode(true));
       document.querySelector(".box-text").innerHTML = key
       document.querySelector("#next").innerHTML = thirdColumn
       document.querySelector(".task-box").style.display = "block";
+      document.querySelector(".task-box").classList.add('2') //введено для проверки
       alert('случай 2')
     } else if (localStorage.getItem(key) === deleteTitle) {
       alert('случай 3');
@@ -24,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.querySelector(".box-text").innerHTML = key
       document.querySelector("#next").innerHTML = deleteTitle
       document.querySelector(".task-box").style.display = "block";
+      document.querySelector(".task-box").classList.add('3') //введено для проверки
     } else {
       alert('случай 4');
       document.querySelector(".done-inner").append(document.querySelector(".task-box").cloneNode(true));
