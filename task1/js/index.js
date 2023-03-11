@@ -1,5 +1,5 @@
 
-
+document.addEventListener("DOMContentLoaded", function (event) {
   const showModal = function () {
     const modal = document.querySelector('[class="modal"]');
     const modalTitle = document.createElement('h2')
@@ -19,9 +19,9 @@
 
     btnHandler = () => {
       modal.style = 'opacity : 1';
-     
+
       document.querySelector('[class="overlay"]').style = 'opacity :0';
-      
+
       document.getElementById('okay').style = 'display : none'
       modalText.remove()
       modalTitle.remove()
@@ -44,15 +44,60 @@
 
 
   ////
-document.querySelector('#add').addEventListener('click', function () {
+  // document.querySelector('#add').addEventListener('click', function () {
 
 
-const inputName = document.querySelector('#inputTask').value
+
+  //   const inputName = document.querySelector('#inputTask').value
+  //   function btnSave() {
+
+  //     text = localStorage.getItem(localStorage.key(userData))
+
+  //     alert("Вы сохранили ваш текст");
+  //     textArea = document.getElementById('text').value
+
+  //     localStorage.setItem(userData, textArea)
+  //     localStorage.getItem(userData)
+  //   }
+  //   function btnClear() {
+  //     alert("Вы удалили данные");
+  //     document.getElementById('text').value = ''
+  //     localStorage.removeItem(userData)
+  //     btnExit()
 
 
-})
+  //   }
+
+
+  // })
+  let keys = Object.keys(localStorage);
+  for (let key of keys) {
+    let taskStatus = document.getElementById('inProgress').textContent
+    if (localStorage.getItem(key) === taskStatus) {
+      let newDiv = document.createElement('div')
+      document.querySelector(".todo-inner").appendChild(document.querySelector(".task-box").cloneNode(true));
+
+      document.querySelector(".box-text").innerHTML = localStorage.getItem(key)
+      document.querySelector("#next").innerHTML = taskStatus
+      document.querySelector(".task-box").style.display = "block";
+
+
+    }
+
+  }
+ 
 
   
+
+
+});
+function btnInput() {
+  let taskStatus = inProgress.innerHTML
+  let userInputTask = document.getElementById('inputTask').value
+  localStorage.setItem(userInputTask,taskStatus)
+}
+
+
 
 
 

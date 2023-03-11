@@ -11,30 +11,40 @@
 </head>
 
 <body>
-Create new to Do
+  Create new to Do
   <input id="inputTask" type="text">
 
-  <button id="add">Add</button>
+  <button type="submit" id="add" onclick="btnInput()">Add</button>
   <div class="container">
     <div class="titles">
-      <div class="todo-title title-box">
+      <div  class="todo-title title-box">
+        To Do
       </div>
-      <div class="progress-title title-box">
+      <div id="inProgress" class="progress-title title-box">
+        In Progress
       </div>
       <div class="done-title title-box">
+        Done
       </div>
     </div>
     <div class="titles-inner">
-      <div class="todo-inner inner-box">
+      <div  class="todo-inner inner-box">
 
       </div>
-      <div class="progress-inner inner-box">
+      <div  class="progress-inner inner-box">
 
       </div>
       <div class="done-inner inner-box">
 
       </div>
     </div>
+  </div>
+  <div class="task-box">
+    <div class="box-title">
+      <p class="box-text"></p>
+      <button type="submit" id="delete">✕</button>
+    </div>
+    <button type="submit" id="next"></button>
   </div>
 </body>
 
