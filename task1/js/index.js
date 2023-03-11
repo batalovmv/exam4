@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 
   // })
+
   const refresh = function () {
     let keys = Object.keys(localStorage);
     for (let key of keys) {
@@ -88,7 +89,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.querySelector(".box-text").innerHTML = key
         document.querySelector("#next").innerHTML = thirdColumn
         document.querySelector(".task-box").style.display = "block";
-
+      } else if (localStorage.getItem(key) === deleteTitle) {
+        document.querySelector(".done-inner").appendChild(document.querySelector(".task-box").cloneNode(true));
+        document.querySelector(".box-text").innerHTML = key
+        document.querySelector("#next").innerHTML = deleteTitle
+        document.querySelector(".task-box").style.display = "block";
       }
 
     }
@@ -99,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   refresh()
 });
-
+let deleteTitle = 'Delete'
 function btnInput() {
   let taskStatus = inProgress.innerHTML
   let userInputTask = document.getElementById('inputTask').value
@@ -124,12 +129,23 @@ function btnNext() {
       let delKey = this.querySelector('.box-text').innerHTML
       console.log(delKey);
       console.log(localStorage.getItem(delKey)); document
-      console.log(document.getElementsByClassName('progress-title')[0].innerHTML);
+
       if (localStorage.getItem(delKey) === document.getElementsByClassName('progress-title')[0].textContent) {
         console.log('бинго');
         let nextColumn = document.getElementsByClassName('done-title')[0].textContent
         console.log(nextColumn);
         localStorage.setItem(delKey, nextColumn)
+      } else if (localStorage.getItem(delKey) === document.getElementsByClassName('done-title')[0].textContent) {
+        console.log('бинго2');
+
+        localStorage.setItem(delKey, deleteTitle)
+      } else {
+        alert('ПОздравляю вы завершили задание')
+        let delKey = this.querySelector('.box-text').innerHTML
+        localStorage.removeItem(delKey)
+        this.remove()
+        
+
       }
 
     }
