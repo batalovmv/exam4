@@ -73,13 +73,20 @@ document.addEventListener("DOMContentLoaded", function (event) {
   const refresh = function () {
     let keys = Object.keys(localStorage);
     for (let key of keys) {
-      let taskStatus = document.getElementById('inProgress').textContent
-      if (localStorage.getItem(key) === taskStatus) {
-        let newDiv = document.createElement('div')
+      let secondColumn = document.getElementById('inProgress').textContent
+      let thirdColumn = document.getElementsByClassName('done-title')[0].textContent
+      if (localStorage.getItem(key) === secondColumn) {
+
         document.querySelector(".todo-inner").appendChild(document.querySelector(".task-box").cloneNode(true));
 
         document.querySelector(".box-text").innerHTML = key
-        document.querySelector("#next").innerHTML = taskStatus
+        document.querySelector("#next").innerHTML = secondColumn
+        document.querySelector(".task-box").style.display = "block";
+
+      } else if (localStorage.getItem(key) === thirdColumn) {
+        document.querySelector(".progress-inner").appendChild(document.querySelector(".task-box").cloneNode(true));
+        document.querySelector(".box-text").innerHTML = key
+        document.querySelector("#next").innerHTML = thirdColumn
         document.querySelector(".task-box").style.display = "block";
 
       }
@@ -110,15 +117,24 @@ function btnDelete() {
     }
   });
 }
-function btnNext(params) {
+function btnNext() {
   div = document.querySelectorAll('.task-box');
   div.forEach((e) => {
     e.onclick = function () {
       let delKey = this.querySelector('.box-text').innerHTML
-      localStorage.removeItem(delKey)
-      this.remove();
+      console.log(delKey);
+      console.log(localStorage.getItem(delKey)); document
+      console.log(document.getElementsByClassName('progress-title')[0].innerHTML);
+      if (localStorage.getItem(delKey) === document.getElementsByClassName('progress-title')[0].textContent) {
+        console.log('бинго');
+        let nextColumn = document.getElementsByClassName('done-title')[0].textContent
+        console.log(nextColumn);
+        localStorage.setItem(delKey, nextColumn)
+      }
+
     }
   });
+  location.reload()
 }
 
 
