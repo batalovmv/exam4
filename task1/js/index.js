@@ -100,7 +100,10 @@ function btnDelete() {
   div = Array.from(document.querySelectorAll('.task-box'));
   div.forEach((e) => {
     e.onclick = function () {
+      let delKey = this.querySelector('.box-text').innerHTML
+      localStorage.removeItem(delKey)
       this.remove();
+
     }
   });
 
